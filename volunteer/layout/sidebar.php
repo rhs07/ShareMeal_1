@@ -1,8 +1,34 @@
 <?php
 // volunteer/layout/sidebar.php
 
-// Get current page name to highlight the active menu item automatically
 $current_page = basename($_SERVER['PHP_SELF']);
+$active_tab = ''; // We will determine which tab should be green
+
+// 1. DETERMINE ACTIVE TAB BASED ON PAGE & CONTEXT
+if ($current_page == 'dashboard.php') {
+    $active_tab = 'dashboard';
+
+} elseif ($current_page == 'pickups.php' || $current_page == 'pickup_detail.php' || $current_page == 'complete_pickup.php') {
+    $active_tab = 'pickups';
+
+} elseif ($current_page == 'distribution.php' || $current_page == 'complete_delivery.php') {
+    $active_tab = 'distribution';
+
+} elseif ($current_page == 'notes.php') {
+    // If on notes page, check if it's for distribution
+    if (isset($_GET['context']) && $_GET['context'] == 'distribution') {
+        $active_tab = 'distribution';
+    } else {
+        // Default to dashboard or its own tab if you had one
+        $active_tab = 'dashboard'; 
+    }
+
+} elseif ($current_page == 'history.php') {
+    $active_tab = 'history';
+
+} elseif ($current_page == 'reports.php') {
+    $active_tab = 'reports';
+}
 ?>
 
 <style>
@@ -68,6 +94,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         color: var(--primary-green);
     }
 
+    /* Active State Style */
     .nav-item.active {
         background-color: var(--primary-green);
         color: white;
@@ -104,19 +131,24 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </a>
 
     <nav class="nav-menu">
-        <a href="dashboard.php" class="nav-item <?php echo ($current_page == 'dashboard.php') ? 'active' : ''; ?>">
+        <a href="dashboard.php" class="nav-item <?php echo ($active_tab == 'dashboard') ? 'active' : ''; ?>">
             <span>🏠</span> Dashboard
         </a>
-        <a href="pickups.php" class="nav-item <?php echo ($current_page == 'pickups.php' || $current_page == 'pickup_detail.php') ? 'active' : ''; ?>">
+        
+        <a href="pickups.php" class="nav-item <?php echo ($active_tab == 'pickups') ? 'active' : ''; ?>">
             <span>📅</span> Pickups
         </a>
         
-        <a href="complete_delivery.php" class="nav-item <?php echo ($current_page == 'complete_delivery.php') ? 'active' : ''; ?>">
+        <a href="distribution.php" class="nav-item <?php echo ($active_tab == 'distribution') ? 'active' : ''; ?>">
             <span>🚚</span> Distribution
         </a>
 
-        <a href="history.php" class="nav-item <?php echo ($current_page == 'history.php') ? 'active' : ''; ?>">
+        <a href="history.php" class="nav-item <?php echo ($active_tab == 'history') ? 'active' : ''; ?>">
             <span>⏱️</span> History
+        </a>
+
+        <a href="reports.php" class="nav-item <?php echo ($active_tab == 'reports') ? 'active' : ''; ?>">
+            <span>📂</span> Reports
         </a>
     </nav>
 
