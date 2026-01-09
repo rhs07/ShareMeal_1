@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Layout */
+body {
+  display: flex;
+  background: #ecfdf5;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #166534;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background: #22c55e;
+}
+
+/* Main area */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.topbar h2 {
+  color: #14532d;
+}
+
+.icons span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  flex: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card p {
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.stat-card h1 {
+  color: #166534;
+  font-size: 32px;
+}
+
+/* Activity */
+.activity-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.activity-card h3 {
+  margin-bottom: 20px;
+  color: #14532d;
+}
+
+/* Fake chart */
+.chart {
+  height: 200px;
+  background: #dcfce7;
+  border-radius: 10px;
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  width: 90%;
+  height: 2px;
+  background: #16a34a;
+}
+/* Links inside sidebar */
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+/* Clickable stat cards */
+.stat-card-link {
+  text-decoration: none;
+  flex: 1;
+}
+
+.stat-card-link .stat-card {
+  cursor: pointer;
+}
